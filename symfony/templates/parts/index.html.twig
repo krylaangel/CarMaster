@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block navigation %}{% endblock %}
+{% block body %}
+    <h1>All spare part</h1>
+    <p>
+        {% if app.request.get('page') > 1 %}
+            <a href="{{ path('app_all_parts', {'page': 1 }) }}">&lArr; First</a>
+            | <a href="{{ path('app_all_parts', {'page': app.request.get('page') - 1 }) }}">&larr; Previous</a> |
+        {% endif %}
+
+        <a href="{{ path('app_all_parts', {'page': app.request.get('page', 1) + 1 }) }}">Next &rarr;</a>
+
+    </p>
+    {% if parts|length %}
+
+        {% for part in parts %}
+            {% from "parts/_macros_parts.html.twig" import parts_info %}
+            {{ parts_info(part) }}
+        {% endfor %}
+
+    {% else %}
+        No pats found
+    {% endif %}
+{% endblock %}

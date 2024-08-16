@@ -1,0 +1,24 @@
+{% macro parts_info(part) %}
+
+    <div class="entity-info">
+        <div>
+            <div class="entity-name">{{ part.namePart }}</div>
+            <span class="entity-label"><b>Vendor code spare part: </b></span>{{ part.partId }}<br>
+            <div class="entity-vehicle"><b>For vehicle: </b>{% for vehicle in part.vehicles %}
+                    {{ vehicle.brand }}                         {% endfor %}
+            </div>
+
+            <span class="entity-label"><b>Model spare part: </b></span>{{ part.modelPart }}<br>
+            <span class="entity-label"><b>Price spare part: </b></span>{{ part.pricePart }}<br>
+
+        </div>
+    </div>
+
+    <div class="entity-actions">
+        <a class="pure-button" href="{{ path('app_part_show', {'partId': part.partId }) }}">Show</a>
+        <a class="pure-button" href="{{ path('app_part_delete', {'partId': part.partId }) }}"
+           onclick="return confirm('Delete part {{ part.namePart }}?')">Delete</a>
+        <a class="pure-button" href="{{ path('app_update_part', {'partId': part.partId }) }}">Update</a>
+
+    </div>
+{% endmacro %}

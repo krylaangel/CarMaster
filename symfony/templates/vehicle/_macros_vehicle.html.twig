@@ -1,0 +1,24 @@
+{% macro vehicle_info(vehicle) %}
+
+    <div class="entity-info">
+        <div>
+            <div class="entity-name">{{ vehicle.brand }}</div>
+            <span class="entity-label"><b>Vendor code vehicle: </b></span>{{ vehicle.vehicleId }}<br>
+            <span class="entity-label"><b>Year manufacture: </b></span>{{ vehicle.yearManufacture }}<br>
+            <span class="entity-label"><b>license Plate: </b></span>{{ vehicle.licensePlate }}<br>
+            <div class="entity-vehicle"><b>Owner: </b>{{ vehicle.owner.firstName }} </div>
+            {% if vehicle.bodyTypes is defined %}
+                <div class="entity-vehicle"><b>Body type: </b>{{ vehicle.bodyTypes|column('value')|join(', ')|default('n/a') }} </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="entity-actions">
+        <a class="pure-button" href="{{ path('app_vehicle_show', {'vehicleId': vehicle.vehicleId }) }}">Show</a>
+        <a class="pure-button" href="{{ path('app_vehicle_delete', {'vehicleId': vehicle.vehicleId }) }}"
+           onclick="return confirm('Delete vehicle {{ vehicle.brand }}?')">Delete</a>
+        {#                <a class="pure-button" href="{{ path('app_update_vehicle', {'vehicleId': vehicle.vehicleId }) }}">Update</a> #}
+        <a class="pure-button" href="{{ path('app_find_part_for_vehicles') }}">Find part</a>
+
+
+    </div>
+{% endmacro %}

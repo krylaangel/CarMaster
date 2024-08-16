@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Find vehicle by owner </h1>
+
+    {{ include('owner/form_find_vehicle.html.twig', { form: form }) }}
+{% endblock %}

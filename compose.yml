@@ -1,16 +1,16 @@
-version: "3"
+version: "3.9"
 
 services:
   php:
     build:
-      context: .
+      context: ./docker
+      target: php-dev
       args:
-        - XDEBUG_ENABLED=${XDEBUG_ENABLED-false}
+        XDEBUG_ENABLED: ${XDEBUG_ENABLED-false}
     depends_on:
       - mysql
     volumes:
-      - ./:/var/www/html
-      - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ./:${CODE_MOUNT_PATH}:delegated
     environment:
       - PHP_IDE_CONFIG=${PHP_IDE_CONFIG}
       - XDEBUG_CONFIG=${XDEBUG_CONFIG}
@@ -18,10 +18,16 @@ services:
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
+  nginx:
+    build:
+      context: ./docker
+      target: nginx-dev
+    depends_on:
+      - php
     ports:
-      - "8080:80"
-    command: >
-      sh -c "echo 'ServerName localhost' >> /etc/apache2/apache2.conf && apache2-foreground"
+      - "80:80"
+    volumes:
+      - ./:${CODE_MOUNT_PATH}:delegated
 
   mysql:
     image: mysql:8.0
@@ -34,5 +40,12 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - mysql-data:/var/lib/mysql
+
+  redis:
+    image: redis:latest
+    volumes:
+      - redis:/data
+
 volumes:
   mysql-data:
+  redis:

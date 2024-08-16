@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block navigation %}{% endblock %}
+{% block body %}
+    <h1>All vehicles</h1>
+    <p>
+        {% if app.request.get('page') > 1 %}
+            <a href="{{ path('app_all_vehicles', {'page': 1 }) }}">&lArr; First</a>
+            | <a href="{{ path('app_all_vehicles', {'page': app.request.get('page') - 1 }) }}">&larr; Previous</a> |
+        {% endif %}
+
+        <a href="{{ path('app_all_vehicles', {'page': app.request.get('page', 1) + 1 }) }}">Next &rarr;</a>
+
+    </p>
+    {% if vehicles|length %}
+
+        {% for vehicle in vehicles %}
+            {% from "vehicle/_macros_vehicle.html.twig" import vehicle_info %}
+            {{ vehicle_info(vehicle) }}
+
+        {% endfor %}
+
+    {% else %}
+        No vehicles found
+    {% endif %}
+{% endblock %}

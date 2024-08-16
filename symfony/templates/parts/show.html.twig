@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% from "parts/_macros_parts.html.twig" import parts_info %}
+    {{ parts_info(part) }}
+{% endblock %}

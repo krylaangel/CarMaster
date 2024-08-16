@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block navigation %}{% endblock %}
+{% block body %}
+    <h1>Show vehicle</h1>
+
+    {% from "vehicle/_macros_vehicle.html.twig" import vehicle_info %}
+    {{ vehicle_info(vehicle) }}
+
+{% endblock %}

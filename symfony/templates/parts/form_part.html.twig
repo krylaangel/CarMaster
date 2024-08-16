@@ -1,0 +1,9 @@
+{{ form_start(form, { 'attr' : { 'class': 'pure-form pure-form-stacked' } }) }}
+{{ form_errors(form) }}
+{{ form_row(form.namePart) }}
+{{ form_row(form.modelPart) }}
+{{ form_row(form.pricePart) }}
+{{ form_row(form.vehicles , { 'attr': { 'multiple': 'multiple' } }) }}
+
+<button type="submit" class="pure-button pure-button-primary">Save</button>
+{{ form_end(form) }}

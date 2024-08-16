@@ -1,0 +1,72 @@
+body {
+    background-color: #EFEFF2;
+    margin: 0 auto;
+    font: 400 16px/28px Arial, sans-serif;
+    color: #19191C;
+}
+
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+}
+
+.content {
+    margin: 0.7em;
+}
+
+.pure-menu-link {
+    color: white;
+}
+
+.pure-menu-link:hover {
+    background-color: #575757;
+}
+
+.dropdown__content {
+    display: none;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.dropdown__content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown__content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown__content {
+    display: block;
+}
+
+.entity-info {
+    background-color: #ffffff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+
+    .entity-info > div {
+        padding: 10px;
+    }
+}
+
+.entity-actions {
+    background-color: #dddddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+.flash-success {
+    color: green;
+}
+
+.flash-error {
+    color: red;
+}

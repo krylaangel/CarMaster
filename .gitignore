@@ -1,4 +1,9 @@
 .idea
 /vendor
+export/
+!export/.gitkeep
 /log
 .env
+Command/
+bin/
+sql/
